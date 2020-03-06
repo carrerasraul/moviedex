@@ -1,4 +1,4 @@
-require('dotenv').config;
+require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
 const helmet = require('helmet');
@@ -48,8 +48,7 @@ app.get('/movie', function handleGetMovies(req, res) {
 
     if (req.query.avg_vote) {
         response = response.filter (movies =>
-            movies.avg_vote.includes(req.query.avg_vote)
-        )
+            movies.avg_vote === Number(req.query.avg_vote)        )
     }
 
     res.json(response)
@@ -70,9 +69,6 @@ app.listen(PORT, () => {
     d    When searching by country, users are searching for whether the Movie's country includes a specified string. The search should be case insensitive.
     e    When searching by average vote, users are searching for Movies with an avg_vote that is greater than or equal to the supplied number.
     f    The API responds with an array of full movie entries for the search results
-
 2- The endpoint only responds when given a valid Authorization header with a Bearer API token value.
-
 3 - The endpoint should have general security in place such as best practice headers and support for CORS.
-
 */
